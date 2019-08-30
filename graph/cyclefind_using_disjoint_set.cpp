@@ -40,14 +40,15 @@ bool is_cycle(graph*gr)
 	int e=gr->E;
 	int x,y;
 	int*parents=new int[v];
-	memset(parents,-1,sizeof(int)*v);
+	memset(parents,-1,sizeof(int)*v);//initialize all the element of the array as -1
+	//which means this node itself is his poarents
 	for(int i=0;i<e;i++)
 	{
 		x=find(parents,gr->edg[i].src);
 		y=find(parents,gr->edg[i].end);
 		if(x==y)
-			return true;
-		Union(parents,x,y);
+			return true;//if x and y are in same set the they will make a loop
+		Union(parents,x,y);//else join this two set 
 	}
 	return false;
 }
